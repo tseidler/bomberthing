@@ -13,7 +13,14 @@ module.exports  = {
                 test: /\.js$/,
                 loader: "babel-loader",
                 query: {
-                    presets: ["es2017"]
+                    presets: [
+                        ["env", {
+                            "targets": {
+                              "browsers": ["last 2 versions"]
+                            },
+                            "debug": true
+                        }]
+                    ]
                 }
             }
         ]
