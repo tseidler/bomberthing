@@ -7,7 +7,7 @@ const extractLess = new ExtractTextPlugin("style.css");
 module.exports  = {
     entry: path.resolve(__dirname, "src/app.js"),
     output: {        
-        path: path.resolve(__dirname, "build"),
+        path: path.resolve(__dirname, "dist"),
         filename: "bundle.js"
     },
     module: {
@@ -22,7 +22,7 @@ module.exports  = {
                                     "targets": {
                                     "browsers": ["last 2 versions"]
                                     },
-                                    "debug": true
+                                    "debug": false
                                 }]
                             ]
                         }
