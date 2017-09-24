@@ -8,7 +8,7 @@ const htmlWebpack = new HtmlWebpackPlugin({
 });
 
 const webpackEnvironment = new webpack.EnvironmentPlugin([
-    'NODE_ENV'
+    "NODE_ENV"
 ]);
 
 module.exports  = {
