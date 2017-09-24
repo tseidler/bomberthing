@@ -1,6 +1,6 @@
 import Style from "../styles/main.less";
+import * as PIXI from 'pixi.js';
 
-const PIXI = require("pixi.js");
 const inherits = require("inherits");
 
 function BomberThing() {
