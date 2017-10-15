@@ -1,25 +1,39 @@
+import * as consts from './consts';
 import Level from './level';
+import * as PIXI from "pixi.js";
 
 class Game {
-    constructor(renderer, stage, height, width) {
-        this.renderer = renderer;
+    constructor(container, height, width) {
+        this.container = container;
+
         this.height = height;
         this.width = width;
-        this.stage = stage;
+        this.renderer = PIXI.autoDetectRenderer(height, width);
+        this.stage = new PIXI.Container();
+        this.container.appendChild(this.renderer.view);
 
         this.time_since_color_change = 0;
     }
 
     start() {
         this.lastUpdate = Date.now();
-        this.gameLoop();
+        this.level = new Level(30, 20, consts.LEVELS[Math.floor(Math.random() * consts.LEVELS.length)]);  // select a random level
+
+        this.loadResources(consts.TEXTURE_MAP);
+    }
+
+    loadResources(resources) {
+        for(const key in resources) {
+            PIXI.loader.add(resources[key]);
+        }
+        PIXI.loader.load(this.gameLoop.bind(this));
     }
 
     gameLoop() {
         let elapsed = Date.now() - this.lastUpdate;
         this.time_since_color_change += elapsed;
 
-        if(this.time_since_color_change >= COLOR_CHANGE_TIME) {
+        if(this.time_since_color_change >= consts.COLOR_CHANGE_TIME) {
             this.time_since_color_change = 0;
             this.renderer.backgroundColor = get_random_color();
         }
