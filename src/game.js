@@ -1,4 +1,4 @@
-const COLOR_CHANGE_TIME = 150;
+import Level from './level';
 
 class Game {
     constructor(renderer, stage, height, width) {
