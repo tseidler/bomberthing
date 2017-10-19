@@ -2,9 +2,9 @@ import Style from "../styles/main.less";
 
 import Game from "../src/game.js";
 
-const GAME_HEIGHT = 1024;
-const GAME_WIDTH = 768;
+const GAME_HEIGHT = 704;
+const GAME_WIDTH = 1088;
 
 const gameContainer = document.getElementById("gameContainer");
-const game = new Game(gameContainer, GAME_HEIGHT, GAME_WIDTH);
-game.start();
+const game = new Game(gameContainer, GAME_WIDTH, GAME_HEIGHT);
+game.load();
