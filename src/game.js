@@ -1,5 +1,6 @@
 import * as consts from './consts';
 import Level from './level';
+import Player from './player';
 import * as PIXI from "pixi.js";
 
 class Game {
@@ -32,6 +33,10 @@ class Game {
     start() {
         // get the level stage once (will never change)
         this.gameStage = this.level.getStage();
+
+        this.player = new Player("Player1", consts.TILE_HEIGHT, consts.TILE_WIDTH, consts.TEXTURE_MAP['cat']);
+        this.gameStage.addChild(this.player.sprite);
+
         this.lastUpdate = Date.now();
         this.gameLoop();
     }
