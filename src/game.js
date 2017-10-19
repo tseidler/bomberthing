@@ -10,7 +10,6 @@ class Game {
         this.width = width;
         this.renderer = PIXI.autoDetectRenderer(width, height);
         this.gameStage = new PIXI.Container();
-        this.levelStage = new PIXI.Container();
         
         this.container.appendChild(this.renderer.view);
 
@@ -32,7 +31,7 @@ class Game {
 
     start() {
         // get the level stage once (will never change)
-        this.levelStage = this.level.getStage();
+        this.gameStage = this.level.getStage();
         this.lastUpdate = Date.now();
         this.gameLoop();
     }
@@ -45,9 +44,7 @@ class Game {
         //     this.time_since_color_change = 0;
         //     this.renderer.backgroundColor = get_random_color();
         // }
-
-        this.renderer.render(this.levelStage);
-        // this.renderer.render(this.gameStage);
+        this.renderer.render(this.gameStage);
 
         this.lastUpdate = Date.now();
         requestAnimationFrame( () => { this.gameLoop() });

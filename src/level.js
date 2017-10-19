@@ -1,8 +1,6 @@
 import * as PIXI from "pixi.js";
-import {TEXTURE_MAP} from "./consts";
+import {TEXTURE_MAP, TILE_WIDTH, TILE_HEIGHT} from "./consts";
 
-const TILE_WIDTH = 64;
-const TILE_HEIGHT = 64;
 export default class Level {
     constructor(width = 17, height = 12, layout) {
         this.num_horizontal_tiles = width;
@@ -22,7 +20,6 @@ export default class Level {
                 sprite.y = y;
                 sprite.height = TILE_HEIGHT;
                 sprite.width = TILE_WIDTH;
-                // debugger
                 stage.addChild(sprite);
 
                 x += TILE_WIDTH;
