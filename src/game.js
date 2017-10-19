@@ -43,12 +43,7 @@ class Game {
 
     gameLoop() {
         let elapsed = Date.now() - this.lastUpdate;
-        // this.time_since_color_change += elapsed;
 
-        // if(this.time_since_color_change >= consts.COLOR_CHANGE_TIME) {
-        //     this.time_since_color_change = 0;
-        //     this.renderer.backgroundColor = get_random_color();
-        // }
         this.renderer.render(this.gameStage);
 
         this.lastUpdate = Date.now();
