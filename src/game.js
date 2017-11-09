@@ -50,12 +50,5 @@ class Game {
         requestAnimationFrame( () => { this.gameLoop() });
     }
 }
-function get_random_color() {
-    let c = () => {
-        var hex = Math.floor(Math.random()*256).toString(16);
-        return ("0"+String(hex)).substr(-2); // pad with zero
-    }
-    return parseInt(c()+c()+c(), 16);
-}
 
 export default Game;
