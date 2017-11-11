@@ -1,15 +1,13 @@
 import * as PIXI from "pixi.js";
 import {TEXTURE_MAP, TILE_WIDTH, TILE_HEIGHT} from "./consts";
 
-export default class Level {
-    constructor(width = 17, height = 12, layout) {
-        this.num_horizontal_tiles = width;
-        this.num_vertical_tiles = height;
+export default class Level extends PIXI.Container {
+    constructor(layout) {
+        super();
         this.layout = layout;
     }
 
-    getStage() {
-        let stage = new PIXI.Container();
+    load_layout() {
         let y = 0;
         for(let row of this.layout) {
             let x = 0;
@@ -20,12 +18,11 @@ export default class Level {
                 sprite.y = y;
                 sprite.height = TILE_HEIGHT;
                 sprite.width = TILE_WIDTH;
-                stage.addChild(sprite);
+                this.addChild(sprite);
 
                 x += TILE_WIDTH;
             }
             y += TILE_HEIGHT;
         }
-        return stage;
     }
 }

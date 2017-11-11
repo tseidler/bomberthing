@@ -10,7 +10,7 @@ class Game {
         this.height = height;
         this.width = width;
         this.renderer = PIXI.autoDetectRenderer(width, height);
-        this.gameStage = new PIXI.Container();
+        this.stage = new PIXI.Container();
         
         this.container.appendChild(this.renderer.view);
 
@@ -18,9 +18,10 @@ class Game {
     }
 
     load() {
-        // select a random level for loading        
-        this.level = new Level(30, 20, consts.LEVELS[Math.floor(Math.random() * consts.LEVELS.length)]);
         this.loadResources(consts.TEXTURE_MAP);
+
+        // select a random level for loading
+        this.level = new Level(consts.LEVELS[Math.floor(Math.random() * consts.LEVELS.length)]);
     }
     
     loadResources(resources) {
@@ -31,11 +32,11 @@ class Game {
     }
 
     start() {
-        // get the level stage once (will never change)
-        this.gameStage = this.level.getStage();
+        this.level.load_layout();
+        this.stage.addChild(this.level);
 
         this.player = new Player("Player1", consts.TILE_HEIGHT, consts.TILE_WIDTH, consts.TEXTURE_MAP['cat']);
-        this.gameStage.addChild(this.player.sprite);
+        this.stage.addChild(this.player.sprite);
 
         this.lastUpdate = Date.now();
         this.gameLoop();
@@ -44,7 +45,7 @@ class Game {
     gameLoop() {
         let elapsed = Date.now() - this.lastUpdate;
 
-        this.renderer.render(this.gameStage);
+        this.renderer.render(this.stage);
 
         this.lastUpdate = Date.now();
         requestAnimationFrame( () => { this.gameLoop() });
