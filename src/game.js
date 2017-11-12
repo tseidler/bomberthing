@@ -13,8 +13,6 @@ class Game {
         this.stage = new PIXI.Container();
         
         this.container.appendChild(this.renderer.view);
-
-        this.time_since_color_change = 0;
     }
 
     load() {
