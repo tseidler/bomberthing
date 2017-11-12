@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import {TILE_WIDTH, TILE_HEIGHT} from "./consts";
+import {TILE_WIDTH, TILE_HEIGHT, PLAYER_MOVE_SPEED} from "./consts";
 
 export default class Player {
     constructor(name, x, y, texture) {

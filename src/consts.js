@@ -24,9 +24,11 @@ const LEVELS = [
 const COLOR_CHANGE_TIME = 150;
 const TILE_WIDTH = 64;
 const TILE_HEIGHT = 64;
+const PLAYER_MOVE_SPEED = 0.4;
 
 export {
     LEVELS,
+    PLAYER_MOVE_SPEED,
     TEXTURE_MAP,
     COLOR_CHANGE_TIME,
     TILE_WIDTH,
