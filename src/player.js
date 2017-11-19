@@ -8,8 +8,8 @@ export default class Player {
         this.sprite = new PIXI.Sprite(PIXI.loader.resources[texture].texture);
         this.sprite.x = x;
         this.sprite.y = y;
-        this.sprite.width = TILE_WIDTH;
-        this.sprite.height = TILE_HEIGHT;
+        this.sprite.width = TILE_WIDTH/1.25;
+        this.sprite.height = TILE_HEIGHT/1.25;
 
         this.movement = {x: 0, y: 0};
     }
