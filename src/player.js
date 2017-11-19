@@ -12,6 +12,7 @@ export default class Player {
         this.sprite.height = TILE_HEIGHT/1.25;
 
         this.movement = {x: 0, y: 0};
+        this.blocked_tiles = [];
     }
 
     update(elapsedTime) {
@@ -51,5 +52,9 @@ export default class Player {
                 this.movement.x = Math.min(this.movement.x, 0);
                 break;
         }
+    }
+
+    setBlockedTiles(wallSprites) {
+        this.blocked_tiles = wallSprites;
     }
 }

@@ -9,7 +9,7 @@ export default class Level extends PIXI.Container {
         this.walls = new PIXI.Container();
     }
 
-    load_layout() {
+    loadLayout() {
         let y = 0;
         for(let row of this.layout) {
             let x = 0;
@@ -31,5 +31,9 @@ export default class Level extends PIXI.Container {
         }
         this.addChild(this.surface);
         this.addChild(this.walls);
+    }
+
+    getWalls() {
+        return this.walls.children;
     }
 }
