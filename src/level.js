@@ -5,6 +5,8 @@ export default class Level extends PIXI.Container {
     constructor(layout) {
         super();
         this.layout = layout;
+        this.surface = new PIXI.Container();
+        this.walls = new PIXI.Container();
     }
 
     load_layout() {
@@ -18,11 +20,16 @@ export default class Level extends PIXI.Container {
                 sprite.y = y;
                 sprite.height = TILE_HEIGHT;
                 sprite.width = TILE_WIDTH;
-                this.addChild(sprite);
-
+                if(tile === 'W') {
+                    this.walls.addChild(sprite);
+                } else {
+                    this.surface.addChild(sprite);
+                }
                 x += TILE_WIDTH;
             }
             y += TILE_HEIGHT;
         }
+        this.addChild(this.surface);
+        this.addChild(this.walls);
     }
 }
