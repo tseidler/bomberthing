@@ -2,7 +2,7 @@ import * as consts from './consts';
 import GameControls from './gamecontrols';
 import Level from './level';
 import Player from './player';
-import * as PIXI from "pixi.js";
+import * as PIXI from 'pixi.js';
 
 class Game {
     constructor(container, width, height) {
