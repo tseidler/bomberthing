@@ -34,7 +34,7 @@ class Game {
         this.level.loadLayout();
         this.stage.addChild(this.level);
 
-        this.player = new Player("Player1", consts.TILE_HEIGHT, consts.TILE_WIDTH, consts.TEXTURE_MAP['cat']);
+        this.player = new Player("Player1", consts.TILE_HEIGHT + 5, consts.TILE_WIDTH + 5, consts.TEXTURE_MAP['cat']);
         this.player.setBlockedTiles(this.level.getWalls());
         this.stage.addChild(this.player.sprite);
 
