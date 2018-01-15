@@ -3,6 +3,7 @@ import GameControls from './gamecontrols';
 import Level from './level';
 import Player from './player';
 import * as PIXI from 'pixi.js';
+import * as sound from 'pixi-sound';
 
 class Game {
     constructor(container, width, height) {
@@ -24,6 +25,13 @@ class Game {
     }
     
     loadResources(resources) {
+        this.music = PIXI.sound.Sound.from({
+            url: 'sounds/theme.mp3',
+            autoPlay: true,
+            volume: 0.5,
+            loop: true
+        });
+
         for(const key in resources) {
             PIXI.loader.add(resources[key]);
         }
