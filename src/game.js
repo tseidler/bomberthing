@@ -1,9 +1,11 @@
+import Bomb from './bomb';
 import * as consts from './consts';
 import GameControls from './gamecontrols';
 import Level from './level';
 import Player from './player';
 import * as PIXI from 'pixi.js';
 import * as sound from 'pixi-sound';
+import { CHAR_WIDTH } from './consts';
 
 class Game {
     constructor(container, width, height) {
@@ -41,12 +43,8 @@ class Game {
     start() {
         this.level.loadLayout();
         this.stage.addChild(this.level);
+        this.setupPlayer();
 
-        let playerTexture = consts.TEXTURE_MAP['cat'];
-        let playerSprite = new PIXI.Sprite(PIXI.loader.resources[playerTexture].texture);
-
-        this.player = new Player("Player1", consts.TILE_HEIGHT + 5, consts.TILE_WIDTH + 5, playerSprite);
-        this.player.setBlockedTiles(this.level.getWalls());
         this.stage.addChild(this.player.sprite);
         this.bombs = [];
 
@@ -60,11 +58,16 @@ class Game {
         let elapsed = Date.now() - this.lastUpdate;
 
         this.player.update(elapsed);
-        // ****************************************
-        // todo: check bomb lifetime and clean up *
-        // ****************************************
-        this.renderer.render(this.stage);
 
+        this.bombs.forEach(bombInGame => {
+            bombInGame.bomb.update(elapsed);
+            if(bombInGame.bomb.isDead()) {
+                this.stage.removeChild(bombInGame.container);
+            }
+        });
+        this.bombs = this.bombs.filter(bombInGame => bombInGame.bomb.isDead() === false);
+
+        this.renderer.render(this.stage);
         this.lastUpdate = Date.now();
         requestAnimationFrame( () => { this.gameLoop() });
     }
@@ -82,12 +85,28 @@ class Game {
         this.controls.setKey(39, () => { this.player.setMovement("right" )}, () => { this.player.clearMovement("right") });
 
         // space (32)
-        this.controls.setKey(32, undefined, () => { this.spawnBomb() });
+        this.controls.setKey(32, () => { this.spawnBomb() }, undefined);
+    }
+
+    setupPlayer() {
+        let playerTexture = consts.TEXTURE_MAP['cat'];
+        let playerSprite = new PIXI.Sprite(PIXI.loader.resources[playerTexture].texture);
+
+        this.player = new Player("Player1", 
+            consts.TILE_HEIGHT + 5, 
+            consts.TILE_WIDTH + 5, 
+            playerSprite);
+        this.player.setBlockedTiles(this.level.getWalls());
     }
 
     spawnBomb() {
-        let bomb = {}; //this.player.spawnBomb();
+        let bombTexture = consts.TEXTURE_MAP['bomb'];
+        let bombSprite = new PIXI.Sprite(PIXI.loader.resources[bombTexture].texture);
+        let bomb = new Bomb(this.player.X(), this.player.Y(), bombSprite);
+
         let bombContainer = new PIXI.Container();
+        bombContainer.addChild(bomb.sprite);
+        this.stage.addChild(bombContainer);
 
         this.bombs.push({
             bomb: bomb,

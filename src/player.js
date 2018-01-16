@@ -2,10 +2,10 @@ import {CHAR_WIDTH, CHAR_HEIGHT, PLAYER_MOVE_SPEED} from './consts';
 import {rectangle_intersect} from './helpers/intersect';
 
 export default class Player {
-    constructor(name, x, y, sprite) {
+    constructor(name, x, y, playerSprite) {
         this.name = name;
 
-        this.sprite = sprite;
+        this.sprite = playerSprite;
         this.sprite.x = x;
         this.sprite.y = y;
         this.sprite.width = CHAR_WIDTH;
@@ -14,6 +14,9 @@ export default class Player {
         this.movement = {x: 0, y: 0};
         this.blocked_tiles = [];
     }
+
+    X() { return this.sprite.x; }
+    Y() { return this.sprite.y; }
 
     update(elapsedTime) {
         let new_x = this.sprite.x + this.movement.x * elapsedTime;
