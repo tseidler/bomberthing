@@ -2,6 +2,7 @@ const TEXTURE_MAP = {
     'G':    'images/grass.png',
     'W':    'images/wall.png',
     'cat':  'images/cat.png',
+    'bomb': 'images/bomb.png',
 };
 
 const LEVELS = [
