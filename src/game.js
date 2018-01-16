@@ -42,7 +42,10 @@ class Game {
         this.level.loadLayout();
         this.stage.addChild(this.level);
 
-        this.player = new Player("Player1", consts.TILE_HEIGHT + 5, consts.TILE_WIDTH + 5, consts.TEXTURE_MAP['cat']);
+        let playerTexture = consts.TEXTURE_MAP['cat'];
+        let playerSprite = new PIXI.Sprite(PIXI.loader.resources[playerTexture].texture);
+
+        this.player = new Player("Player1", consts.TILE_HEIGHT + 5, consts.TILE_WIDTH + 5, playerSprite);
         this.player.setBlockedTiles(this.level.getWalls());
         this.stage.addChild(this.player.sprite);
 

@@ -1,12 +1,11 @@
-import * as PIXI from 'pixi.js';
 import {TILE_WIDTH, TILE_HEIGHT, PLAYER_MOVE_SPEED} from './consts';
 import {rectangle_intersect} from './helpers/intersect';
 
 export default class Player {
-    constructor(name, x, y, texture) {
+    constructor(name, x, y, sprite) {
         this.name = name;
 
-        this.sprite = new PIXI.Sprite(PIXI.loader.resources[texture].texture);
+        this.sprite = sprite;
         this.sprite.x = x;
         this.sprite.y = y;
         this.sprite.width = TILE_WIDTH/1.25;
