@@ -1,4 +1,4 @@
-import {TILE_WIDTH, TILE_HEIGHT, PLAYER_MOVE_SPEED} from './consts';
+import {CHAR_WIDTH, CHAR_HEIGHT, PLAYER_MOVE_SPEED} from './consts';
 import {rectangle_intersect} from './helpers/intersect';
 
 export default class Player {
@@ -8,8 +8,8 @@ export default class Player {
         this.sprite = sprite;
         this.sprite.x = x;
         this.sprite.y = y;
-        this.sprite.width = TILE_WIDTH/1.25;
-        this.sprite.height = TILE_HEIGHT/1.25;
+        this.sprite.width = CHAR_WIDTH;
+        this.sprite.height = CHAR_HEIGHT;
 
         this.movement = {x: 0, y: 0};
         this.blocked_tiles = [];
