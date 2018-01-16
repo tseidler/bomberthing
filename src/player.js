@@ -77,7 +77,6 @@ export default class Player {
                 right: tile.x + tile.width,
                 bottom: tile.y + tile.height,
             }
-            // debugger;
             return rectangle_intersect(player_rect, tile_rect);
         });
     }
