@@ -48,6 +48,7 @@ class Game {
         this.player = new Player("Player1", consts.TILE_HEIGHT + 5, consts.TILE_WIDTH + 5, playerSprite);
         this.player.setBlockedTiles(this.level.getWalls());
         this.stage.addChild(this.player.sprite);
+        this.bombs = [];
 
         this.setupControls();
 
@@ -59,6 +60,9 @@ class Game {
         let elapsed = Date.now() - this.lastUpdate;
 
         this.player.update(elapsed);
+        // ****************************************
+        // todo: check bomb lifetime and clean up *
+        // ****************************************
         this.renderer.render(this.stage);
 
         this.lastUpdate = Date.now();
@@ -76,6 +80,19 @@ class Game {
         this.controls.setKey(37, () => { this.player.setMovement("left") }, () => { this.player.clearMovement("left") });
         // right (39)
         this.controls.setKey(39, () => { this.player.setMovement("right" )}, () => { this.player.clearMovement("right") });
+
+        // space (32)
+        this.controls.setKey(32, undefined, () => { this.spawnBomb() });
+    }
+
+    spawnBomb() {
+        let bomb = {}; //this.player.spawnBomb();
+        let bombContainer = new PIXI.Container();
+
+        this.bombs.push({
+            bomb: bomb,
+            container: bombContainer
+        });
     }
 }
 
